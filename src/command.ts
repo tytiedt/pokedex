@@ -1,11 +1,7 @@
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
-
-type CLICommand = {
-  name: string;
-  description: string;
-  callback: (commands: Record<string, CLICommand>) => void;
-};
+import { commandMap, commandMapBack } from "./command_map.js";
+import { CLICommand } from "./state.js";
 
 const getCommands = (): Record<string, CLICommand> => {
   return {
@@ -19,7 +15,17 @@ const getCommands = (): Record<string, CLICommand> => {
       description: "Displays this help message",
       callback: commandHelp,
     },
+    map: {
+      name: "map",
+      description: "Displays a page of the map",
+      callback: commandMap,
+    },
+    mapb: {
+      name: "mapb",
+      description: "Displays the previous page of the map",
+      callback: commandMapBack,
+    },
   };
 }
 
-export { getCommands, CLICommand };
+export { getCommands };

@@ -1,6 +1,8 @@
-const commandExit = () => {
-  console.log('Closing the Pokedex... Goodbye!');
-  process.exit(0);
+import { State } from './state.js';
+
+const commandExit = async (state: State) => {
+  const { rl } = state;
+  rl.close();
 };
 
 export { commandExit };

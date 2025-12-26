@@ -1,5 +1,4 @@
-import * as readline from 'readline';
-import { getCommands } from './command.js';
+import { State } from './state.js';
 
 const cleanInput = (input: string): string[] => {
   return input
@@ -9,21 +8,18 @@ const cleanInput = (input: string): string[] => {
     .map((word) => word.replace(/[^\w]/g, ''));
 };
 
-const startREPL = (): void => {
-
-  const rl: readline.Interface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    prompt: 'Pokedex > '
-  });
+const startREPL = (state: State): void => {
+  const { rl, commands } = state;
 
   rl.prompt();
-
-  rl.on('line', (line: string) => {
+  rl.on('line', async (line: string) => {
     const command: string = cleanInput(line)[0];
-    const commands = getCommands();
     if (commands[command]) {
-      commands[command].callback(commands);
+      try {
+        await commands[command].callback(state);
+      } catch (error) {
+        console.error(`Error executing command ${command}:`, error);
+      }
     } else {
       console.log(`Unknown command: ${command}`);
     }
@@ -36,4 +32,5 @@ const startREPL = (): void => {
   });
 };
 
+// TODO remove cleanInput export when no longer needed elsewhere
 export { cleanInput, startREPL };

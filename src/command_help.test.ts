@@ -1,15 +1,17 @@
 import { describe, expect, test, vi } from "vitest";
 import { commandHelp } from "./command_help.js";
-import { getCommands } from "./command.js";
+import { initState } from "./state.js";
+
 
 describe("commandHelp", () => {
   test("should print help message to stdout", () => {
-    const commands = getCommands();
+    const state = initState();
+    const commands = state.commands;
     
     // Spy on console.log
     const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     
-    commandHelp(commands);
+    commandHelp(state);
     
     // Check that console.log was called
     expect(logSpy).toHaveBeenCalled();
