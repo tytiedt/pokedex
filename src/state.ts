@@ -5,13 +5,13 @@ import { PokeAPI } from "./pokeapi.js";
 type CLICommand = {
   name: string;
   description: string;
-  callback: (state: State) => Promise<void>;  //callback: (commands: Record<string, CLICommand>) => void;
+  callback: (state: State) => Promise<void>;
 };
 
 type State = {
   commands: Record<string, CLICommand>;
   rl: Interface;
-  PokeAPI: PokeAPI; // TODO: specify type
+  PokeAPI: PokeAPI;
   nextLocationsURL?: string | null;
   prevLocationsURL?: string | null;
 };

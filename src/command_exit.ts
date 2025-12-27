@@ -1,7 +1,8 @@
 import { State } from './state.js';
 
 const commandExit = async (state: State) => {
-  const { rl } = state;
+  const { rl, PokeAPI } = state;
+  PokeAPI.cache.stopReapLoop();
   rl.close();
 };
 
