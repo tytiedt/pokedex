@@ -2,6 +2,8 @@ import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap, commandMapBack } from "./command_map.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch } from "./command_catch.js";
+import { commandPokedex } from "./command_pokedex.js";
 import { CLICommand } from "./state.js";
 
 const getCommands = (): Record<string, CLICommand> => {
@@ -28,8 +30,18 @@ const getCommands = (): Record<string, CLICommand> => {
     },
     explore: {
       name: "explore",
-      description: "Explores the map\n Usage: explore <location>",
+      description: "Explores the map\n\tUsage: explore <location>",
       callback: commandExplore,
+    },
+    catch: {
+      name: "catch",
+      description: "Catches a Pokemon\n\tUsage: catch <pokemon>",
+      callback: commandCatch,
+    },
+    pokedex: {
+      name: "pokedex",
+      description: "Displays your pokedex",
+      callback: commandPokedex,
     },
   };
 }
