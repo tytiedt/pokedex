@@ -1,6 +1,7 @@
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap, commandMapBack } from "./command_map.js";
+import { commandExplore } from "./command_explore.js";
 import { CLICommand } from "./state.js";
 
 const getCommands = (): Record<string, CLICommand> => {
@@ -24,6 +25,11 @@ const getCommands = (): Record<string, CLICommand> => {
       name: "mapb",
       description: "Displays the previous page of the map",
       callback: commandMapBack,
+    },
+    explore: {
+      name: "explore",
+      description: "Explores the map\n Usage: explore <location>",
+      callback: commandExplore,
     },
   };
 }

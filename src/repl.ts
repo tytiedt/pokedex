@@ -2,10 +2,10 @@ import { State } from './state.js';
 
 const cleanInput = (input: string): string[] => {
   return input
-    .trim()
     .toLowerCase()
-    .split(/\s+/)
-    .map((word) => word.replace(/[^\w]/g, ''));
+    .trim()
+    .split(" ")
+    .filter((word) => word !== "");
 };
 
 const startREPL = (state: State): void => {
@@ -14,9 +14,10 @@ const startREPL = (state: State): void => {
   rl.prompt();
   rl.on('line', async (line: string) => {
     const command: string = cleanInput(line)[0];
+    const args: string[] = cleanInput(line).slice(1);
     if (commands[command]) {
       try {
-        await commands[command].callback(state);
+        await commands[command].callback(state, ...args);
       } catch (error) {
         console.error(`Error executing command ${command}:`, error);
       }
