@@ -9,8 +9,6 @@ const commandMap = async (state: State) => {
   state.nextLocationsURL = locationsData.next;
   state.prevLocationsURL = locationsData.previous;
   for (const locationResult of locationsData.results) {
-    // let locationArea = await pokeapi.fetchLocation(`${locationResult.name}`)
-    // console.log("fetched location area:", locationArea);
     console.log(`- ${locationResult.name}`);
   }
 };
@@ -24,15 +22,8 @@ const commandMapBack = async (state: State) => {
   state.nextLocationsURL = locationsData.next;
   state.prevLocationsURL = locationsData.previous;
   for (const locationResult of locationsData.results) {
-    // const locationArea = await pokeapi.fetchLocation(`${locationResult.name}`)
-    // console.log(`- ${locationArea.areas[0].name ?? locationResult.name}`);
     console.log(`- ${locationResult.name}`);
   }
 }
-
-// const getLocationData = async (pokeapi: any, locationName: string) => {
-//   const location = await pokeapi.fetchLocation(`${locationName}`);
-//   return location;
-// }
 
 export { commandMap, commandMapBack };

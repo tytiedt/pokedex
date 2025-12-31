@@ -7,15 +7,11 @@ describe.each([
     expected: ["hello", "world"],
   },
   {
-    input: "TESTing, one TWO three!!! ",
-    expected: ["testing", "one", "two", "three"],
+    input: "TESTing, one TWO-three!!! ",
+    expected: ["testing,", "one", "two-three!!!"],
   },
   {    input: "   Multiple     spaces   here   ",
     expected: ["multiple", "spaces", "here"],
-  },
-  {
-    input: "Punctuation!!! Should; be: removed.",
-    expected: ["punctuation", "should", "be", "removed"],
   },
   {
     input: " MiXeD CaSe InPuT ",

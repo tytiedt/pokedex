@@ -18,8 +18,16 @@ describe("PokeAPI", () => {
 
   it("should fetch locations", async () => {
     const locations = await pokeAPI.fetchLocations();
-    console.log(`Fetched locations: ${JSON.stringify(locations, null, 2)}`);
+    // console.log(`Fetched locations: ${JSON.stringify(locations, null, 2)}`);
     expect(locations).toBeDefined();
     expect(locations.results.length).toEqual(20);
+  });
+
+  it("should fetch locations", async () => {
+    const pokemonName = "pikachu";
+    const pokemon = await pokeAPI.fetchPokemon(`${pokemonName}`);
+    // console.log(`Fetched pokemon: ${JSON.stringify(pokemon, null, 2)}`);
+    expect(pokemon).toBeDefined();
+    expect(pokemon.name).toEqual(`${pokemonName}`);
   });
 });
